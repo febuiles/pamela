@@ -1,6 +1,6 @@
 class Pamela
   def self.load(*args)
-    args.each { |arg| self.send(arg) }
+    args.flatten.each { |arg| self.send(arg) }
   end
 
   def self.spec
@@ -24,24 +24,17 @@ class Pamela
 
   def self.console
     task :console do
-      exec("irb -Ilib -r#{self.app_name}")
+      start_irb(self.app_name)
     end
   end
 
   def self.app_name
-    raise Exception, "Project name not found" if Dir.pwd == "/"
-
-    if File.directory?(".git")
-      Dir.pwd.split("/").last
-    else
-      Dir.chdir("..")
-      self.app_name
-    end
+    rakefile_dir = Rake.application.find_rakefile_location.last
+    name = rakefile_dir.split("/").last
+    name or raise Exception, "Project name not found"
   end
 
-
-  class << self
-    alias_method :specs, :spec
-    alias_method :use, :load
+  def start_irb(app_name)
+    exec("irb -Ilib -r#{self.app_name}")
   end
 end
