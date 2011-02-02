@@ -38,4 +38,13 @@ directory.
 
 Adds a console to your application that loads the environment in `lib/`. This is useful for
 debugging your applications without having to manually require the files everytime. Expects the
-file name of the main file (lib/something.rb) to match the project directory name (something/).
+file name of the main file (`lib/something.rb`) to match the project directory name (`something/`).
+
+## Ch-ch-ch-changes
+
+This is a work in progress. Fork away and send pull requests. Report any problems in the [issue
+tracker](http://github.com/febuiles/pamela/issues).
+
+Federico Builes - [federico.builes@gmail.com](federico.builes@gmail.com)
+
+
